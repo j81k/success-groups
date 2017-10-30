@@ -1,0 +1,1 @@
+Home Page! <?= BASE_URL; ?>
