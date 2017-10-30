@@ -7,8 +7,10 @@
 		public function __construct()
 		{
 			parent::__construct();
-
-			defined('BASE_URL') OR define('BASE_URL', base_url('/')); 
+			$segments = $this->uri->segments;
+			$this->controller_name = empty($segments[1]) ? 'home' : $segments[1];  
+			defined('BASE_URL') OR define('BASE_URL', base_url('/'));
+			defined('IS_HOME') OR define('IS_HOME', $this->controller_name ==  'home' ? true : false); 
 		}
 
 		public function render($page = 'home/index', $args = [])
