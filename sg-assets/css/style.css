@@ -227,3 +227,35 @@ input:checked + label {color: #e11d4a; border: 1px solid #ddd; border-top: 2px s
 	.one .button-wrap {margin-left:45px;}
 }
 
+.pac-container.pac-logo:after {
+    content: none !important;
+}
+
+#distance-info {
+    display: none;
+    
+    padding: 5px;
+    background: #F7F7F7;
+    color: #666;
+    letter-spacing: 1px;
+    text-align: left;
+    font-size: 12px;
+}
+
+#distance-info > div {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    padding: 2px 10px;
+}
+
+#distance-info > div > span {
+    font-style: italic;
+    float: right;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+#distance-info > div:nth-child(3) > span {
+    color: #e11d4a;
+}

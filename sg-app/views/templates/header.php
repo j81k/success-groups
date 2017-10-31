@@ -7,6 +7,9 @@
 <!--<![endif]-->
 <head>
 	<?= $this->load->view('templates/head', [], true); ?>
+        <script type="text/javascript">
+            //var mapApiKey = '<?= GOOGLE_MAP_API_KEY; ?>';
+        </script>
 </head>
 <body>
     <div id="popup1" class="overlay">

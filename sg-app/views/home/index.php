@@ -24,7 +24,7 @@
                         	<input type="text" placeholder="No.of Days">
                         </div>
                         <div class="section30">
-                        	<input type="text" placeholder="Pickup Place">
+                        	<input type="text" placeholder="Pickup Place" class="mapLocate">
                         </div>
                         <div class="section30">
                         	<input type="text" placeholder="Estimate Usage in Hrs">
@@ -33,15 +33,15 @@
                         	<input type="text" placeholder="Date & Time">
                         </div>
                         <div class="section30">
-                        	<select>
-                            	<option>Vehicle Type</option>
-                                <option>Hatch Back</option>
-                                <option>Sedan</option>
-                                <option>Suu</option>
-                                <option>luxury</option>
-                                <option>Tata Ace</option>
-                                <option>407</option>
-                                <option>Heavy Vehicle</option>
+                            <select>
+                            	<option value="">Vehicle Type</option>
+                                <option value="1">Hatch Back</option>
+                                <option value="1">Sedan</option>
+                                <option value="1">Suu</option>
+                                <option value="1">luxury</option>
+                                <option value="1">Tata Ace</option>
+                                <option value="1">407</option>
+                                <option value="1">Heavy Vehicle</option>
                             </select>
                         </div>
                         <div class="section30 text_left">
@@ -58,28 +58,38 @@
                 </section>
                 
                 <section id="content2">
-                	<div>
+                    <div>
                         <div class="section25">
                         	<input type="text" placeholder="No.of Days">
                         </div>
+                        
                         <div class="section25">
-                        	<input type="text" placeholder="Pickup Place">
+                        	<input type="text" placeholder="Pickup Place" class="mapLocate pickup-place">
                         </div>
+                        
                         <div class="section25">
-                        	<input type="text" placeholder="Drop Place">
+                        	<input type="text" placeholder="Drop Place"  class="mapLocate drop-place">
                         </div>
+                        
                         <div class="section25">
-                        	<select>
-                            	<option>Vehicle Type</option>
-                                <option>Hatch Back</option>
-                                <option>Sedan</option>
-                                <option>Suu</option>
-                                <option>luxury</option>
-                                <option>Tata Ace</option>
-                                <option>407</option>
-                                <option>Heavy Vehicle</option>
+                        	<select class="vehicle-type">
+                            	<option value="">Vehicle Type</option>
+                                <option value="1">Hatch Back</option>
+                                <option value="1">Sedan</option>
+                                <option value="1">Suu</option>
+                                <option value="1">luxury</option>
+                                <option value="1">Tata Ace</option>
+                                <option value="1">407</option>
+                                <option value="1">Heavy Vehicle</option>
                             </select>
                         </div>
+                        
+                        <div class="section25" id="distance-info">
+                                <div>Distance (km): <span>0</span></div>
+                                <div>Rate per km (Rs): <span>0.00</span></div>
+                                <div>Approx. Rate (Rs): <span>0.00</span></div>
+                        </div>
+                        
                         <div class="section25 section_rt">
                         	<input type="submit" onclick="location.href = 'success_tour_amt.html';">
                         </div>

@@ -13,5 +13,4 @@
 <link rel="stylesheet" href="<?= asset_url() ?>css/style.css" type="text/css">
 <!-- Font Awesome -->
 <link  rel="stylesheet" type="text/css" href="<?= asset_url() ?>css/font-awesome.min.css">
-<script type="text/javascript" src="<?= asset_url() ?>js/jquery.min.js"></script>
 </head>
