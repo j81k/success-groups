@@ -56,18 +56,35 @@ function mapInit() {
 var directionsService = new google.maps.DirectionsService();
 
 $(document).on('ready', function(){
-  
+
+    $('form.ft_enq_form, form.contact_form').on('submit', function(event){
+        event.preventDefault();
+        var $this = $(this)   
+        ,   data = {
+            'data': $this.serialize()
+        }
+        
+        $.post(baseUrl + 'ajax/submit/contact', data, function(results){
+            results= JSON.parse(results);
+            alert(results.message);
+            
+            if (results.status != -1) {
+                $this[0].reset();
+            }
+        });
+        
+        return false;
+    });
+    
     $('#content2 .pickup-place, #content2 .drop-place').on('change', function(){
         if ($('#content2 .vehicle-type').val() != '') {
             setTimeout(function(){
-                console.log('Getting ..');
                 calculateApprxRate();
             }, 300);
         }
     });
   
     $('#content2 .vehicle-type').on('change', function(){
-        
         calculateApprxRate();
     });
     

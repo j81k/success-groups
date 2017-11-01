@@ -22,10 +22,10 @@
             <div class="section50">
             	<div class="contact_form_div">
                     <form class="contact_form">
-                        <input type="text" placeholder="Name">
-                        <input type="text" placeholder="Email">
-                        <input type="text" placeholder="Mobile No.">
-                        <textarea placeholder="Comments"></textarea>
+                        <input type="text" placeholder="Name"  name="enq_name">
+                        <input type="text" placeholder="Email" name="enq_email">
+                        <input type="text" placeholder="Mobile No." name="enq_contact_no">
+                        <textarea placeholder="Comments" name="enq_desc"></textarea>
                         <input type="submit" class="ft_enq_btn">
                     </form>
             	</div>

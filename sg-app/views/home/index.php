@@ -88,6 +88,7 @@
                                 <div>Distance (km): <span>0</span></div>
                                 <div>Rate per km (Rs): <span>0.00</span></div>
                                 <div>Approx. Rate (Rs): <span>0.00</span></div>
+                                <div id="distance-info-more">* Driver food, bata and Toll charges are extra.</div> 
                         </div>
                         
                         <div class="section25 section_rt">

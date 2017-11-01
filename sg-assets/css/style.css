@@ -248,6 +248,12 @@ input:checked + label {color: #e11d4a; border: 1px solid #ddd; border-top: 2px s
     padding: 2px 10px;
 }
 
+#distance-info-more {
+    font-size: 10px;
+    border-bottom-color: #f33 !important;
+    padding: 10px !important;
+}
+
 #distance-info > div > span {
     font-style: italic;
     float: right;

@@ -86,4 +86,21 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 define('SITE_NAME',		'Success Groups');
 
+define('SEND_MAIL',             false);
+define('SEND_SMS',              false);
+
+
+// Mail
+define('MAIL_SUBJECT',          'Mail from: ' . SITE_NAME); # Default Mail Subject
+define('MAIL_ENQ_ADDR',         'support@sg.com'); # From address for enquiry etc
+
+// SMS
+define('SMS_GATEWAY_URL',       'http://sms.glg.co.in/sendsms?uname=selfie&pwd=selfie&senderid=SELFIE&route=T');
+define('MOBILE_NO_PREFIX',      '+91');
+
+// API
 define('GOOGLE_MAP_API_KEY',    'AIzaSyAUKXpv0EroPCs6SoQEXrX_jZpAjg6IYP0');
+
+// Tables
+define('TBL_PREFIX',            'sg_');
+define('TBL_CONTACT',           TBL_PREFIX . 'contact_us');

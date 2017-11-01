@@ -1,14 +1,10 @@
-<?php
-	//defined('BASE_URL') OR define('BASE_URL', base_url('/')); 
-?>
-
 <!DOCTYPE HTML>
 <html lang="en">
 <!--<![endif]-->
 <head>
 	<?= $this->load->view('templates/head', [], true); ?>
         <script type="text/javascript">
-            //var mapApiKey = '<?= GOOGLE_MAP_API_KEY; ?>';
+            var baseUrl = '<?= BASE_URL; ?>';
         </script>
 </head>
 <body>
