@@ -54,8 +54,8 @@
             <ul class="menu">
                 <li><a href="<?= BASE_URL; ?>" <?= $this->controller_name == 'home' ? 'class="menuactive"' : ''; ?> >Home</a></li>
                 <li><a href="<?= BASE_URL; ?>about-us"  <?= $this->controller_name == 'about-us' ? 'class="menuactive"' : ''; ?> >About us</a></li>
-                <li><a href="<?= BASE_URL; ?>services" <?= $this->controller_name == 'services' ? 'class="menuactive"' : ''; ?> >Services</a></li>
-                <li><a href="<?= BASE_URL; ?>tariff" <?= $this->controller_name == 'tariff' ? 'class="menuactive"' : ''; ?> >Tariff</a></li>
+                <li><a href="<?= BASE_URL; ?>services/package/honey-moon" <?= $this->controller_name == 'services' ? 'class="menuactive"' : ''; ?> >Services</a></li>
+                <li><a href="javascript:void(0);" class="popup_id">Tariff</a></li>
                 <li><a href="<?= BASE_URL; ?>attachments" <?= $this->controller_name == 'attachments' ? 'class="menuactive"' : ''; ?> >Attachments</a></li>
                 <li><a href="<?= BASE_URL; ?>contact-us" <?= $this->controller_name == 'contact-us' ? 'class="menuactive"' : ''; ?> >Contact Us</a></li>
             </ul>

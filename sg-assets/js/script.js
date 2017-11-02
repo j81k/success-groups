@@ -88,7 +88,7 @@ $(document).on('ready', function(){
         calculateApprxRate();
     });
     
-    $('.mapLocate').on('focus', function(){
+    $('body').on('focus', '.mapLocate', function(){
         $('#mapLocate').removeAttr('id');
         $(this).attr('id', 'mapLocate');
         mapInit();

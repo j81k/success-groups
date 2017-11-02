@@ -138,7 +138,7 @@ input:checked + label {color: #e11d4a; border: 1px solid #ddd; border-top: 2px s
 .contact_form {float:left; width:100%;}
 .contact_form > input[type=text] {float:left; width:98%; border:0px; border-bottom:1px solid #CCC; font-size:14px; padding:1%; margin-bottom:20px;}
 .contact_form > input[type=text]:focus {border-bottom:1px solid #feb215;}
-.contact_form textarea {width:98%; padding:1%; margin-right:1%; font-size:14px; border:0; border-bottom:1px solid #CCC; background:transparent; color:#FFF; margin-top:10px; resize:none;}
+.contact_form textarea {width:98%; padding:1%; margin-right:1%; font-size:14px; border:0; border-bottom:1px solid #CCC; background:transparent; margin-top:10px; resize:none;}
 .contact_form textarea:focus {border-bottom:1px solid #feb215;}
 .contact_form > input[type=submit] {background:#fcb215 !important; color:#FFF !important; text-transform:uppercase; padding:10px 20px; border:0px; font-size:14px;}
 .contact_form_div > p {padding:10px;}
@@ -264,4 +264,8 @@ input:checked + label {color: #e11d4a; border: 1px solid #ddd; border-top: 2px s
 
 #distance-info > div:nth-child(3) > span {
     color: #e11d4a;
+}
+
+.ft_enq_form textarea {
+    color: #fff;
 }

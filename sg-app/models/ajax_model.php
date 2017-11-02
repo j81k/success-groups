@@ -16,7 +16,8 @@ class Ajax_Model extends CI_Model
             'cnt_name'          => $data['enq_name'],
             'cnt_email'         => $data['enq_email'],
             'cnt_contact_no'    => $data['enq_contact_no'],
-            'cnt_description'   => htmlspecialchars($data['enq_desc'])
+            'cnt_description'   => htmlspecialchars($data['enq_desc']),
+            'created_on'        => date("Y-m-d H:i:s"),
         ];
         
         $this->db->insert(TBL_CONTACT, $args);

@@ -6,24 +6,24 @@
                     <div class="wrapper">
                     <h2 class="row_hd">More Services from Success</h2>
                     <div class="more_services_div">
-                            <div class="more_services_hd">Call Drivers</div>
+                        <div class="more_services_hd">Call Drivers</div>
                         <div class="more_services_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                        <a href="success_calldrivers.html" class="more_services_anchor">Book Now</a>
+                        <a href="<?= BASE_URL; ?>services/success_call_drivers" class="more_services_anchor">Book Now</a>
                     </div>
                     <div class="more_services_div">
-                            <div class="more_services_hd">Travels</div>
+                        <div class="more_services_hd">Travels</div>
                         <div class="more_services_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                        <a href="tour_package.html" class="more_services_anchor">Book Now</a>
+                        <a href="<?= BASE_URL; ?>services/success_travels" class="more_services_anchor">Book Now</a>
                     </div>
                     <div class="more_services_div">
-                            <div class="more_services_hd">Tours</div>
+                        <div class="more_services_hd">Tours</div>
                         <div class="more_services_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                        <a href="success_tour.html" class="more_services_anchor">Book Now</a>
+                        <a href="<?= BASE_URL; ?>services/package/honey-moon" class="more_services_anchor">Book Now</a>
                     </div>
                     <div class="more_services_div">
-                            <div class="more_services_hd">Temple Pooja</div>
+                        <div class="more_services_hd">Temple Pooja</div>
                         <div class="more_services_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                        <a href="#" class="more_services_anchor">Book Now</a>
+                        <a href="<?= BASE_URL; ?>services/package/temple-pooja" class="more_services_anchor">Book Now</a>
                     </div>
                 </div>
             </div>
