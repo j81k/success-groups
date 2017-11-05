@@ -13,6 +13,111 @@
             
             switch ($type)
             {
+                
+                case 'attachments':
+                    
+                    $results = $this->ajax_model->submitAttachments();
+                    
+                    if ($results['_id'] > 0) {
+                        // Success
+                        
+                        $msg = $this->load->view('templates/sms/attachments.html', [], true);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                        if (SEND_SMS && empty($args['contact_no']) == false) {
+                            send_sms($args['contact_no'], $msg);
+                        }
+                        $return = $this->set_msg($msg);
+                    }
+                    
+                break;    
+                    
+                case 'package':
+                        
+                    $results = $this->ajax_model->submitPackage();
+                    
+                    if ($results['_id'] > 0) {
+                        // Success
+                        
+                        $mail_to = $results['email'];
+                        if (SEND_MAIL && empty($mail_to) == false) {
+                            // Mail
+                            
+                            $body = $this->load->view('templates/mail/success_booking.html', [], true);
+                            $body = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                            $body = preg_replace('/\{ref_id\}/', $results['_id'], $body);
+                            $body = preg_replace('/\{module\}/', $results['module'], $body);
+                            
+                            $args = [
+                                'to'    => $mail_to,
+                                'from'  => MAIL_ENQ_ADDR,
+                                'body'  => $body
+                            ];
+                            
+                            send_mail($args);
+                        }
+                        
+                        $msg = $this->load->view('templates/sms/success_booking.html', [], true);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                        if (SEND_SMS && empty($args['contact_no']) == false) {
+                            send_sms($args['contact_no'], $msg);
+                        }
+                        $return = $this->set_msg($msg);
+                    }
+                    
+                break;    
+                
+                case 'request':
+                    // Request Call Back
+                    $results = $this->ajax_model->submitRequest();
+                    
+                    if ($results['_id'] > 0) {
+                        // Success
+                        
+                        $msg = $this->load->view('templates/sms/req_callback.html', [], true);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                        if (SEND_SMS && empty($args['contact_no']) == false) {
+                            send_sms($args['contact_no'], $msg);
+                        }
+                        
+                        $return = $this->set_msg($msg);
+                    }
+                    
+                break;    
+                
+                case 'main':
+                    
+                    $results = $this->ajax_model->submitMain();
+                    
+                    if ($results['_id'] > 0) {
+                        // Success
+                        
+                        $mail_to = $results['email'];
+                        if (SEND_MAIL && empty($mail_to) == false) {
+                            // Mail
+                            
+                            $body = $this->load->view('templates/mail/success_booking.html', [], true);
+                            $body = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                            $body = preg_replace('/\{ref_id\}/', $results['_id'], $body);
+                            $body = preg_replace('/\{module\}/', $results['module'], $body);
+                            
+                            $args = [
+                                'to'    => $mail_to,
+                                'from'  => MAIL_ENQ_ADDR,
+                                'body'  => $body
+                            ];
+                            
+                            send_mail($args);
+                        }
+                        
+                        $msg = $this->load->view('templates/sms/success_booking.html', [], true);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                        if (SEND_SMS && empty($args['contact_no']) == false) {
+                            send_sms($args['contact_no'], $msg);
+                        }
+                        $return = $this->set_msg($msg);
+                    }
+                break;
+            
                 case 'contact':
                     $results = $this->ajax_model->submitContact();
                     
@@ -23,7 +128,7 @@
                         if (SEND_MAIL && empty($mail_to) == false) {
                             // Mail
                             
-                            $body = $this->load->view('templates/mail/enquiry.php', [], true);
+                            $body = $this->load->view('templates/mail/enquiry.html', [], true);
                             $body = preg_replace('/\{name\}/', '<b>'. $results['cnt_name'] .'</b>', $body);
                             $body = preg_replace('/\{desc\}/', $results['cnt_description'], $body);
                             
@@ -36,20 +141,17 @@
                             send_mail($args);
                         }
                         
+                        $msg = $this->load->view('templates/sms/enquiry.html', [], true);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['cnt_name'] .'</b>', $body);
                         if (SEND_SMS && empty($args['cnt_contact_no']) == false) {
-                            $msg = $this->load->view('templates/sms/enquiry.php', [], true);
-                            $msg = preg_replace('/\{name\}/', '<b>'. $results['cnt_name'] .'</b>', $body);
-                            
                             send_sms($args['cnt_contact_no'], $msg);
                         }
                         
-                        $return = $this->set_msg('Thanks for contacting us. We will get bact you soon!');
+                        $return = $this->set_msg($msg);
                     }
                     
-                    
-                    
                 break;
-            
+                
                 default:
                     // Invalid Type
                 break;    

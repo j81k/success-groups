@@ -2,16 +2,18 @@
  * script.js
  */
 
-function calculateApprxRate()
+function calculateApprxRate($parent)
 {
     var rate = 0
     ,   km   = 0
-    ,   pickupPlace = $('#content2 .pickup-place').val() || "";
+    ,   parentId = $parent.attr('data-type') == 'call-drivers' || typeof $parent == 'undefined' ? '#content1' : '#content2'
+    ,   pickupPlace = $(parentId + ' .pickup-place').val() || "";
     
-    var perKm = 10;
+    $('#sub-call-drivers .subhd, #sub-travel .subhd').html('');
+    var perKm = parseFloat($(parentId + ' .vehicle-type option:selected').attr('data-fare')) || 0;
     
-    if (pickupPlace != '') {
-        var dropPlace = $('#content2 .drop-place').val() || "";
+    if (pickupPlace != '' && !isOffline) {
+        var dropPlace = $(parentId + ' .drop-place').val() || "";
         
         if (dropPlace != '') {
             
@@ -21,42 +23,225 @@ function calculateApprxRate()
                 travelMode  : google.maps.DirectionsTravelMode.DRIVING
             };
 
+            $('#sub-call-drivers .subhd, #sub-travel .subhd').html('Calculating ...').slideDown('slow');
+            
             directionsService.route(request, function(response, status) {
                 if ( status == google.maps.DirectionsStatus.OK ) {
-                    km = Math.round(response.routes[0].legs[0].distance.value/1000); // the distance in metres
-                    rate = parseFloat(perKm * km).toFixed(2);
+                    isOffline = false;
+                    if (perKm > 0) {
+                        km = Math.round(response.routes[0].legs[0].distance.value/1000); // the distance in metres
+                        rate = parseFloat(perKm * km).toFixed(2);
+                        
+                    }
                     
                     // Show Rate
-                    $('#distance-info > div:nth-child(2) span').html(perKm.toFixed(2));
-                    $('#distance-info > div:nth-child(3) span').html(rate);
-                    $('#distance-info').slideDown('slow');
+                    $(parentId + ' .distance-info > div:nth-child(2) span').html(perKm > 0 ? perKm.toFixed(2) : 'N/A');
+                    $(parentId + ' .distance-info > div:nth-child(3) span').html(rate > 0 ? rate : 'N/A');
+                    $(parentId + ' .distance-info').slideDown('slow');
                 }
                 else {
                     
-                    $('#distance-info').slideUp('slow', function(){
-                        $('#distance-info > div span').not(':first').html('0.00');
+                    $(parentId + ' .distance-info').slideUp('slow', function(){
+                        $(parentId + ' .distance-info > div span').not(':first').html('0.00');
                     });
                 }
                 
-                $('#distance-info > div:first span').html(km);
+                $(parentId + ' .distance-info > div:first span').html(km);
+                $('#sub-call-drivers .subhd, #sub-travel .subhd').html('Rs. '+ rate + ' ('+ km +' KM)');
             });
-            
             
         }
     }
 }
 
 function mapInit() {
-    var input = document.getElementById('mapLocate');
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    if (!isOffline) {
+        var input = document.getElementById('mapLocate');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+    }
 }
 
-// Google Search Place
-//google.maps.event.addDomListener(window, 'load', mapInit);
-var directionsService = new google.maps.DirectionsService();
+var isOffline = typeof google != 'undefined' ? false : true;
+if (!isOffline) {
+    var directionsService = new google.maps.DirectionsService();
+} else {
+    alert("Warning: It seems to be you are not connected to the Internet. \nSome functionalities may fail to work properly!\n\nThank you for your patient.");
+}
+
+function showForm(type, isMain){
+    var isMain = typeof isMain != "undefined" ? isMain : !$('#main-'+type).is(':visible');
+    
+    if (isMain) {
+        $('#main-'+type).removeAttr('submit-form');
+        $('#sub-'+type).fadeOut('slow');
+        $('#main-'+type+', .wrapper > .row_hd, .tab_content_div:first > .subhd').slideDown('slow');
+        
+    }else {
+        // Main Form Submitted
+        $('#main-'+type+', .wrapper > .row_hd, .tab_content_div:first > .subhd').fadeOut('slow');
+        $('#sub-'+type).slideDown('slow');
+        return false;
+    }
+        
+}
 
 $(document).on('ready', function(){
 
+    $('#attachment-form').on('submit', function(event){
+        event.preventDefault();
+        
+        var name = $(this).find('.name');
+        if (name != '') {
+            
+            var $this = $(this)
+            ,   $sbmtBtn = $this.find('input[type="submit"]')
+            ,   data = {
+                pakageName: $('#pkg-title').text(),
+                'data': $this.serialize()
+            }
+
+            $sbmtBtn.prop('disabled', true).val('Please wait ...');
+            $.post(baseUrl + 'ajax/submit/package', data, function(results){
+                $sbmtBtn.prop('disabled', false).val('Book Now');
+                
+                results= JSON.parse(results);
+                alert(results.message);
+
+                if (results.status != -1) {
+                    $this[0].reset();
+                }
+            });
+        
+        } else {
+            alert('Error: Please enter all the required fields!');
+        }
+       
+        return false;
+    });
+
+    $('#package-form').on('submit', function(event){
+        event.preventDefault();
+        
+        var name = $(this).find('.name');
+        if (name != '') {
+            
+            var $this = $(this)
+            ,   $sbmtBtn = $this.find('input[type="submit"]')
+            ,   data = {
+                pakageName: $('#pkg-title').text(),
+                'data': $this.serialize()
+            }
+
+            $sbmtBtn.prop('disabled', true).val('Please wait ...');
+            $.post(baseUrl + 'ajax/submit/package', data, function(results){
+                $sbmtBtn.prop('disabled', false).val('Book Now');
+                
+                results= JSON.parse(results);
+                alert(results.message);
+
+                if (results.status != -1) {
+                    $this[0].reset();
+                }
+            });
+        
+        } else {
+            alert('Error: Please enter all the required fields!');
+        }
+       
+        return false;
+    });
+
+    $('#popup2 input[type="submit"]').on('click', function(){
+        var name = $('#popup2 .name').val()
+        ,   contactNo = $('#popup2 .contact-no').val();
+        
+        if (name != "" && contactNo != "") {
+            var data = {
+                data: {
+                    name: name,
+                    contactNo: contactNo
+                } 
+            };
+            
+            $.post(baseUrl + 'ajax/submit/request', data, function(results){
+                results= JSON.parse(results);
+                alert(results.message);
+                
+                if (results.status != -1) {
+                    $('#popup2 .close2').trigger('click');
+                };
+            });
+        }
+    });
+
+    $('.drop_place_chk').on('click', function(){
+        var $parent = $(this).parent().closest('.tabs-form');
+        if ($(this).is(':checked')) {
+            $parent.find('.drop-place').val('');
+            $parent.find('.distance-info').slideUp('slow');
+        } 
+    })
+
+    $('#tab1, #tab2').on('click', function(){
+        var type = $(this).attr('id') == "tab1" ? "call-drivers" : "travel";
+        showForm(type, true);
+    });
+    
+    $('.tabs-form').on('submit', function(event){
+        //event.preventDefault();
+        
+        var type = $(this).attr('data-type') || "";
+        if(type == '') {
+            alert("Oops: Unable to determine the type of form!\nReloading the page may solve the problem.");
+            return false;
+        }
+        
+        if ($('#main-'+type).attr('submit-form')) {
+            return false;
+        }
+        
+        if (!$('#main-'+type).is(':visible')) {
+            // Submit the form
+            $('input[type="submit"]').prop('disabled', true).val('Please wait ...');
+            $('#main-'+type).attr('submit-form', 'true');
+            var $parent = $('#main-'+type).parent().closest('.tabs-form')
+            ,   data    = {
+                type : type,
+                distanceInfo: {
+                    totalKm: $('#main-'+type+' .total-km').text(),
+                    ratePerKm: $('#main-'+type+' .rate-per-km').text(),
+                    totalRate: $('#main-'+type+' .total-rate').text()
+                },
+                data : $parent.serialize()
+            };
+            
+            if (data.type == 'call-drivers') {
+                data.isOutstation = $('#main-'+type+' .button-wrap').hasClass('button-active') ? true : false;
+            }
+            
+            $.post(baseUrl + 'ajax/submit/main', data, function(results){
+                results= JSON.parse(results);
+                alert(results.message);
+
+                if (results.status != -1) {
+                    window.location.reload();
+                };
+            });
+            
+        } else {
+            showForm(type);
+        }
+        
+        return false;
+    });
+
+     $('.datetimepicker').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'en',
+        pick12HourFormat: true,
+        pickSeconds: false
+      });
+      
     $('form.ft_enq_form, form.contact_form').on('submit', function(event){
         event.preventDefault();
         var $this = $(this)   
@@ -76,16 +261,19 @@ $(document).on('ready', function(){
         return false;
     });
     
-    $('#content2 .pickup-place, #content2 .drop-place').on('change', function(){
-        if ($('#content2 .vehicle-type').val() != '') {
+    $('.pickup-place, .drop-place').on('change', function(){
+        var $parent = $(this).parent().closest('.tabs-form');
+        
+        if ($parent.find('.vehicle-type').val() != '') {
             setTimeout(function(){
-                calculateApprxRate();
+                calculateApprxRate($parent);
             }, 300);
         }
     });
   
-    $('#content2 .vehicle-type').on('change', function(){
-        calculateApprxRate();
+    $('.vehicle-type').on('change', function(){
+        var $parent = $(this).parent().closest('.tabs-form');
+        calculateApprxRate($parent);
     });
     
     $('body').on('focus', '.mapLocate', function(){
@@ -95,6 +283,12 @@ $(document).on('ready', function(){
     });
     
     /** Predefined: START **/
+    
+    /* Basic Gallery */
+    if ($( '.swipebox' ).length > 0) {
+        $( '.swipebox' ).swipebox();
+    }
+    
     $('.button-wrap').on("click", function(){
         $(this).toggleClass('button-active');
     });
@@ -122,6 +316,15 @@ $(document).on('ready', function(){
     // For Responsive Menu
     $(".res_menu").click(function(e) {
         $(".menu").slideToggle();
+    });
+    
+    //Service Menu DropDown
+    $(".dropdown").mouseover(function(e) {
+        $(".dropdown_menu").slideDown(100);
+    });
+    
+    $(".dropdown").mouseleave(function(e) {
+        $(".dropdown_menu").slideUp(100);
     });
 
     $("#drop_place").hide();

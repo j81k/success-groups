@@ -10,7 +10,8 @@
 
 			public function index()
 			{
-				$this->render('home/index');
+                                $vechiles = $this->common_model->get_vechiles();
+				$this->render('home/index', ['vechiles' => $vechiles]);
 			}
 	}
 

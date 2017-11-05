@@ -10,7 +10,14 @@
 <!-- Mobile Specific Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS -->
-<link rel="stylesheet" href="<?= asset_url() ?>css/style.css" type="text/css">
+<link href="<?= asset_url() ?>css/bootstrap-combined.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="screen" href="<?= asset_url() ?>css/bootstrap-datetimepicker.min.css">
+
 <!-- Font Awesome -->
 <link  rel="stylesheet" type="text/css" href="<?= asset_url() ?>css/font-awesome.min.css">
-</head>
+<link rel="stylesheet" href="<?= asset_url() ?>css/style.css" type="text/css">
+<?php  if ($controller_name == 'gallery'): ?>
+    <link rel="stylesheet" href="<?= asset_url() ?>css/swipebox.css" />
+<?php endif; ?>
+
+

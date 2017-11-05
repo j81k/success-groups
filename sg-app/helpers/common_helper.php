@@ -93,6 +93,14 @@ if (!function_exists('get_friendly_name'))
 	}	
 }
 
+if (!function_exists('get_var_name')) 
+{
+    function get_var_name($str, $replace_by = '_')
+    {
+        return preg_replace('/[ |-]/i', $replace_by, $str);
+    }
+}
+
 if (!function_exists('pre'))
 {
 	function pre($data = [])

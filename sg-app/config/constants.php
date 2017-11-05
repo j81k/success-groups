@@ -84,17 +84,18 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
+
+/*** START - Custom Constants ***/
+define('TIMEZONE',              'Asia/Calcutta'); # Asia/Calcutta
 define('SITE_NAME',		'Success Groups');
 
-define('SEND_MAIL',             false);
-define('SEND_SMS',              false);
-
-
 // Mail
+define('SEND_MAIL',             false);
 define('MAIL_SUBJECT',          'Mail from: ' . SITE_NAME); # Default Mail Subject
 define('MAIL_ENQ_ADDR',         'support@sg.com'); # From address for enquiry etc
 
 // SMS
+define('SEND_SMS',              false);
 define('SMS_GATEWAY_URL',       'http://sms.glg.co.in/sendsms?uname=selfie&pwd=selfie&senderid=SELFIE&route=T');
 define('MOBILE_NO_PREFIX',      '+91');
 
@@ -103,4 +104,11 @@ define('GOOGLE_MAP_API_KEY',    'AIzaSyAUKXpv0EroPCs6SoQEXrX_jZpAjg6IYP0');
 
 // Tables
 define('TBL_PREFIX',            'sg_');
+define('TBL_VECHILES_MASTER',   TBL_PREFIX . 'vechiles_master');
+define('TBL_CUSTOMER_MASTER',   TBL_PREFIX . 'customers_master');
+define('TBL_CUSTOMER_DETAILS',  TBL_PREFIX . 'customer_details');
 define('TBL_CONTACT',           TBL_PREFIX . 'contact_us');
+define('TBL_REQUEST_CALLBACK',  TBL_PREFIX . 'request_callback');
+define('TBL_SUCCESS_BOOKING',   TBL_PREFIX . 'success_bookings');
+define('TBL_SERVICE_BOOKING',   TBL_PREFIX . 'service_booking');
+define('TBL_ATTACHMENTS',       TBL_PREFIX . 'attachments');

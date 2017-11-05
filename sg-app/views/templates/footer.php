@@ -18,7 +18,7 @@
                     <div class="more_services_div">
                         <div class="more_services_hd">Tours</div>
                         <div class="more_services_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                        <a href="<?= BASE_URL; ?>services/package/honey-moon" class="more_services_anchor">Book Now</a>
+                        <a href="<?= BASE_URL; ?>services/tour_packages" class="more_services_anchor">Book Now</a>
                     </div>
                     <div class="more_services_div">
                         <div class="more_services_hd">Temple Pooja</div>
@@ -63,7 +63,17 @@
         </div>
         <div class="footer_bottom"><p>All Rights Reserves by Success Group</p></div>
     </body>
-    <script type="text/javascript" src="<?= asset_url() ?>js/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="<?= asset_url(); ?>js/jquery-1.8.3.min.js"></script> 
+    <script type="text/javascript" src="<?= asset_url(); ?>js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?= asset_url(); ?>js/bootstrap-datetimepicker.min.js"></script>
+    
+    <?php if ($controller_name == 'gallery'): ?>
+        <script type="text/javascript" src="<?= asset_url(); ?>js/jquery.swipebox.js"></script>
+    <?php endif; ?>
+    
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?= GOOGLE_MAP_API_KEY; ?>&libraries=places"></script>
     <script type="text/javascript" src="<?= asset_url(); ?>js/script.js"></script>
+    
+    
 </html>

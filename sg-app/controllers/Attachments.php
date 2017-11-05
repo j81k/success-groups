@@ -10,6 +10,7 @@ class Attachments extends BaseController
 
 	public function index()
 	{
-		$this->render('attachments/index');
+                $vechiles = $this->common_model->get_vechiles();
+                $this->render('attachments/index', ['vechiles' => $vechiles]);
 	}
 }

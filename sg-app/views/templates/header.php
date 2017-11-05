@@ -2,12 +2,12 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
-	<?= $this->load->view('templates/head', [], true); ?>
+	<?= $this->load->view('templates/head', ['controller_name' => $this->controller_name], true); ?>
         <script type="text/javascript">
             var baseUrl = '<?= BASE_URL; ?>';
         </script>
 </head>
-<body>
+<body id="<?= $this->controller_name; ?>-page" >
     <div id="popup1" class="overlay">
         <div class="popup">
             <span class="close">&times;</span>
@@ -20,8 +20,8 @@
         <div class="popup">
             <span class="close2">&times;</span>
             <div class="popup_content">
-                <input type="text" placeholder="Name" >
-                <input type="text" placeholder="Mobile Number">
+                <input type="text" placeholder="Name" class="name">
+                <input type="text" placeholder="Mobile Number" class="contact-no">
                 <input type="submit">
             </div>
         </div>
@@ -54,9 +54,20 @@
             <ul class="menu">
                 <li><a href="<?= BASE_URL; ?>" <?= $this->controller_name == 'home' ? 'class="menuactive"' : ''; ?> >Home</a></li>
                 <li><a href="<?= BASE_URL; ?>about-us"  <?= $this->controller_name == 'about-us' ? 'class="menuactive"' : ''; ?> >About us</a></li>
-                <li><a href="<?= BASE_URL; ?>services/package/honey-moon" <?= $this->controller_name == 'services' ? 'class="menuactive"' : ''; ?> >Services</a></li>
+                
+                <li class="dropdown"><a href="javascript: void();" <?= $this->controller_name == 'services' ? 'class="menuactive"' : ''; ?> >Services</a>
+                    <ul class="dropdown_menu">
+                    	<li><a href="<?= BASE_URL; ?>services/success_call_drivers">Call Drivers</a></li>
+                        <li><a href="<?= BASE_URL; ?>services/success_travels">Travels</a></li>
+                        <li><a href="<?= BASE_URL; ?>services/tour_packages">Tours</a></li>
+                        <li><a href="<?= BASE_URL; ?>services/package/temple-pooja">Temple Pooja</a></li>
+                    </ul>
+                </li>
+                
+                
                 <li><a href="javascript:void(0);" class="popup_id">Tariff</a></li>
                 <li><a href="<?= BASE_URL; ?>attachments" <?= $this->controller_name == 'attachments' ? 'class="menuactive"' : ''; ?> >Attachments</a></li>
+                <li><a href="<?= BASE_URL; ?>gallery" <?= $this->controller_name == 'gallery' ? 'class="menuactive"' : ''; ?> >Gallery</a></li>
                 <li><a href="<?= BASE_URL; ?>contact-us" <?= $this->controller_name == 'contact-us' ? 'class="menuactive"' : ''; ?> >Contact Us</a></li>
             </ul>
     	</div>
@@ -68,11 +79,11 @@
             <iframe src="<?= asset_url(); ?>slider/index.html" scrolling="no" frameborder="0" class="iframe_banner"></iframe>
         <?php 
             else : 
-                $title = get_friendly_name($this->controller_name);        
+                $title = get_friendly_name($this->page_name);//$this->controller_name);        
         ?>
             <div id="inner-banner" class="inner-banner-bg-4">
                 <div class="container">
-                    <h1><?= $title; ?></h1>
+                    <h1><?= $this->controller_name == 'services' ? 'Services' : $title; ?></h1>
                     <ol class="breadcrumb">
                         <li><a href="<?= BASE_URL; ?>">Home</a></li>
                         <li class="active"><?= $title; ?></li>
