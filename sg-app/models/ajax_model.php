@@ -10,7 +10,13 @@ class Ajax_Model extends CI_Model
         parent::__construct();
         
         $this->post = $this->input->post();
-        parse_str($this->post['data'], $this->data);
+        if (is_string($this->post['data'])) {
+            // Serialized string
+            parse_str($this->post['data'], $this->data);
+        } else {
+            $this->data = $this->post['data'];
+        }
+        
     }
     
     public function check_customer_exists()
@@ -81,11 +87,11 @@ class Ajax_Model extends CI_Model
             'vechile_no'            => $this->data['vechile_no'],
             'driver_type'           => $this->data['driver_type'],
             
-            'have_rc_book'          => $this->data['doc_rc_book'] == 'on' ? 1 : 0,
-            'have_all_permit'       => $this->data['doc_all_permit'] == 'on' ? 1 : 0,
-            'have_state_permit'     => $this->data['doc_state_permit'] == 'on' ? 1 : 0,
-            'have_insurance'        => $this->data['insurance'] == 'on' ? 1 : 0,
-            'have_driving_license'  => $this->data['driving_license'] == 'on' ? 1 : 0,
+            'have_rc_book'          => empty($this->data['doc_rc_book']) == false && $this->data['doc_rc_book'] == 'on' ? 1 : 0,
+            'have_all_permit'       => empty($this->data['doc_all_permit']) == false && $this->data['doc_all_permit'] == 'on' ? 1 : 0,
+            'have_state_permit'     => empty($this->data['doc_state_permit']) == false && $this->data['doc_state_permit'] == 'on' ? 1 : 0,
+            'have_insurance'        => empty($this->data['insurance']) == false && $this->data['insurance'] == 'on' ? 1 : 0,
+            'have_driving_license'  => empty($this->data['driving_license']) == false && $this->data['driving_license'] == 'on' ? 1 : 0,
             
             'created_on'            => $now,
             'updated_on'            => $now,
@@ -206,8 +212,8 @@ class Ajax_Model extends CI_Model
             'travel_date'           => date("Y-m-d H:i:s", strtotime($this->data['date'])),
             'station_type'          => $this->post['isOutstation'] == 'true' ? 2 : 1,
             'est_usage_hrs'         => $this->data['est_in_hrs'],
-            'is_night_journey'      => $this->data['night_journey'] == 'on' ? 1 : 0,
-            'is_drop_same_location' => $this->data['drop_as_same'] == 'on' ? 1 : 0,
+            'is_night_journey'      => empty($this->data['night_journey']) == false && $this->data['night_journey'] == 'on' ? 1 : 0,
+            'is_drop_same_location' => empty($this->data['drop_as_same']) == false && $this->data['drop_as_same'] == 'on' ? 1 : 0,
             'total_km'              => $this->post['distanceInfo']['totalKm'],
             'rate_per_km'           => $this->post['distanceInfo']['ratePerKm'],
             'total_rate'            => $this->post['distanceInfo']['totalRate'],

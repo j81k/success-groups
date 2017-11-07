@@ -11,6 +11,7 @@
                 * {desc}    # Actual comment sent by customer   
 
         - <success_booking.html>
+            Same for: Package Booking 
             Params: 
                 * {name}    # Name of the customer
                 * {module}  # Submitted Module Name
@@ -39,7 +40,7 @@
 
 
 
-#1 Change log:
+# Change log:
 ------------
 [OK] * Date picker
 [OK] * Remove "round trip" field from success Travel

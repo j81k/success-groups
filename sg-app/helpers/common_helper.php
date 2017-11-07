@@ -97,7 +97,7 @@ if (!function_exists('get_var_name'))
 {
     function get_var_name($str, $replace_by = '_')
     {
-        return preg_replace('/[ |-]/i', $replace_by, $str);
+        return strtolower(preg_replace('/[ |-]/i', $replace_by, $str));
     }
 }
 

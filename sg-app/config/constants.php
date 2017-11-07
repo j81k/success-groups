@@ -110,5 +110,5 @@ define('TBL_CUSTOMER_DETAILS',  TBL_PREFIX . 'customer_details');
 define('TBL_CONTACT',           TBL_PREFIX . 'contact_us');
 define('TBL_REQUEST_CALLBACK',  TBL_PREFIX . 'request_callback');
 define('TBL_SUCCESS_BOOKING',   TBL_PREFIX . 'success_bookings');
-define('TBL_SERVICE_BOOKING',   TBL_PREFIX . 'service_booking');
+define('TBL_SERVICE_BOOKING',   TBL_PREFIX . 'service_bookings');
 define('TBL_ATTACHMENTS',       TBL_PREFIX . 'attachments');

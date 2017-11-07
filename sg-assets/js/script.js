@@ -159,7 +159,7 @@ $(document).on('ready', function(){
             var data = {
                 data: {
                     name: name,
-                    contactNo: contactNo
+                    contact_no: contactNo
                 } 
             };
             
@@ -169,6 +169,8 @@ $(document).on('ready', function(){
                 
                 if (results.status != -1) {
                     $('#popup2 .close2').trigger('click');
+                    $('#popup2 .name').val('');
+                    $('#popup2 .contact-no').val('');
                 };
             });
         }

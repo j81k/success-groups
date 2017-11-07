@@ -22,7 +22,7 @@
                         // Success
                         
                         $msg = $this->load->view('templates/sms/attachments.html', [], true);
-                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $msg);
                         if (SEND_SMS && empty($args['contact_no']) == false) {
                             send_sms($args['contact_no'], $msg);
                         }
@@ -57,7 +57,10 @@
                         }
                         
                         $msg = $this->load->view('templates/sms/success_booking.html', [], true);
-                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $msg);
+                        $msg = preg_replace('/\{ref_id\}/', $results['_id'], $msg);
+                        $msg = preg_replace('/\{module\}/', $results['module'], $msg);
+                            
                         if (SEND_SMS && empty($args['contact_no']) == false) {
                             send_sms($args['contact_no'], $msg);
                         }
@@ -74,7 +77,7 @@
                         // Success
                         
                         $msg = $this->load->view('templates/sms/req_callback.html', [], true);
-                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $msg);
                         if (SEND_SMS && empty($args['contact_no']) == false) {
                             send_sms($args['contact_no'], $msg);
                         }
@@ -110,7 +113,10 @@
                         }
                         
                         $msg = $this->load->view('templates/sms/success_booking.html', [], true);
-                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $body);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $msg);
+                        $msg = preg_replace('/\{ref_id\}/', $results['_id'], $msg);
+                        $msg = preg_replace('/\{module\}/', $results['module'], $msg);
+                        
                         if (SEND_SMS && empty($args['contact_no']) == false) {
                             send_sms($args['contact_no'], $msg);
                         }
@@ -142,7 +148,7 @@
                         }
                         
                         $msg = $this->load->view('templates/sms/enquiry.html', [], true);
-                        $msg = preg_replace('/\{name\}/', '<b>'. $results['cnt_name'] .'</b>', $body);
+                        $msg = preg_replace('/\{name\}/', '<b>'. $results['cnt_name'] .'</b>', $msg);
                         if (SEND_SMS && empty($args['cnt_contact_no']) == false) {
                             send_sms($args['cnt_contact_no'], $msg);
                         }
@@ -164,7 +170,7 @@
         {
             return [
                 'status'    => $code,
-                'message'   => $code == -1 ? 'Oops: Something went wrong! Please try again.' : $msg
+                'message'   => $code == -1 ? 'Oops: Something went wrong! Please try again.' : str_replace('.', '.  ', strip_tags($msg))
             ];
         }
         
