@@ -5,6 +5,7 @@ class Services extends BaseController
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('service_model');
     }
     
     public function index()
@@ -27,7 +28,10 @@ class Services extends BaseController
     
     public function tour_packages()
     {
-        $this->render('services/tour_packages');
+        $data = [
+            'packages'  => $this->service_model->get_packages()
+        ];
+        $this->render('services/tour_packages', $data);
     }
     
     public function package($package_name = 'honey-moon')

@@ -112,3 +112,4 @@ define('TBL_REQUEST_CALLBACK',  TBL_PREFIX . 'request_callback');
 define('TBL_SUCCESS_BOOKING',   TBL_PREFIX . 'success_bookings');
 define('TBL_SERVICE_BOOKING',   TBL_PREFIX . 'service_bookings');
 define('TBL_ATTACHMENTS',       TBL_PREFIX . 'attachments');
+define('TBL_PACKAGES',          TBL_PREFIX . 'packages');

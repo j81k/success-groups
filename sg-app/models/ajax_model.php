@@ -59,8 +59,6 @@ class Ajax_Model extends CI_Model
     
     public function submitAttachments()
     {
-        pre($this->data);
-        
         // Check customer already exists
         $customer_id = $this->check_customer_exists();
         
@@ -210,8 +208,8 @@ class Ajax_Model extends CI_Model
             'no_of_days'            => $this->data['no_of_days'],
             'pickup_place'          => $this->data['pickup_place'],
             'travel_date'           => date("Y-m-d H:i:s", strtotime($this->data['date'])),
-            'station_type'          => $this->post['isOutstation'] == 'true' ? 2 : 1,
-            'est_usage_hrs'         => $this->data['est_in_hrs'],
+            'station_type'          => empty($this->post['isOutstation']) == false && $this->post['isOutstation'] == 'true' ? 2 : 1,
+            'est_usage_hrs'         => isset($this->data['est_in_hrs']) ? $this->data['est_in_hrs'] : 0,
             'is_night_journey'      => empty($this->data['night_journey']) == false && $this->data['night_journey'] == 'on' ? 1 : 0,
             'is_drop_same_location' => empty($this->data['drop_as_same']) == false && $this->data['drop_as_same'] == 'on' ? 1 : 0,
             'total_km'              => $this->post['distanceInfo']['totalKm'],

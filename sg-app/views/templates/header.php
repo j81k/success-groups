@@ -60,10 +60,9 @@
                     	<li><a href="<?= BASE_URL; ?>services/success_call_drivers">Call Drivers</a></li>
                         <li><a href="<?= BASE_URL; ?>services/success_travels">Travels</a></li>
                         <li><a href="<?= BASE_URL; ?>services/tour_packages">Tours</a></li>
-                        <li><a href="<?= BASE_URL; ?>services/package/temple-pooja">Temple Pooja</a></li>
+                        <li><a href="<?= BASE_URL; ?>services/package/temple-pooja-package">Temple Pooja</a></li>
                     </ul>
                 </li>
-                
                 
                 <li><a href="javascript:void(0);" class="popup_id">Tariff</a></li>
                 <li><a href="<?= BASE_URL; ?>attachments" <?= $this->controller_name == 'attachments' ? 'class="menuactive"' : ''; ?> >Attachments</a></li>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2017 at 07:54 PM
+-- Generation Time: Nov 09, 2017 at 08:29 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -80,6 +80,14 @@ CREATE TABLE `sg_customers_master` (
   `updated_on` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `sg_customers_master`
+--
+
+INSERT INTO `sg_customers_master` (`id`, `username`, `email`, `display_name`, `contact_no`, `member_status`, `status`, `created_on`, `updated_on`) VALUES
+(1, '', '', '', '', 0, 1, '2017-11-06 17:07:50', '2017-11-06 11:37:50'),
+(2, 'JaiK', 'dev.jeyakumar@gmail.com', 'Jai K', '9945657645', 0, 1, '2017-11-06 18:01:17', '2017-11-06 12:31:17');
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +106,52 @@ CREATE TABLE `sg_customer_details` (
   `created_on` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `sg_customer_details`
+--
+
+INSERT INTO `sg_customer_details` (`id`, `customer_id`, `name`, `contact_no`, `address_1`, `address_2`, `location`, `status`, `created_on`) VALUES
+(1, 1, '', '', '', '', '', 1, '2017-11-06 17:07:50'),
+(2, 2, 'Jai K', '9945657645', '#4/42', '', 'Bangalore', 1, '2017-11-06 18:01:17'),
+(3, 2, 'Jai K', '9945657645', '#4/42', '', 'Bangalore', 1, '2017-11-06 18:06:17'),
+(4, 2, 'Jai K', '9945657645', '#4/42', '', 'bangaldesh', 1, '2017-11-06 18:09:51'),
+(5, 2, 'Jai K', '9945657645', '#4/42', 'West street', 'Bangalore, Karnataka, India', 1, '2017-11-08 00:02:03'),
+(6, 2, 'Jai K', '9945657645', '#4/42', 'West street', 'Chennai, Tamil Nadu, India', 1, '2017-11-08 00:19:12'),
+(7, 2, 'Jai K', '9945657645', '#4/42', 'West street', 'Chennai, Tamil Nadu, India', 1, '2017-11-08 00:31:25'),
+(8, 2, 'Jai K', '09945657645', '#4/42', '', 'Bangalore, Karnataka, India', 1, '2017-11-10 00:17:14'),
+(9, 2, 'Jai K', '09945657645', '#4/42', '', 'Bangalore, Karnataka, India', 1, '2017-11-10 00:19:41'),
+(10, 2, 'Jai K', '0994565789', '#4/42', '', 'Bangalore, Karnataka, India', 1, '2017-11-10 00:22:12'),
+(11, 2, 'Jai K', '09945657645', '#4/42', '', 'Madras, Tamil Nadu, India', 1, '2017-11-10 00:22:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sg_packages`
+--
+
+CREATE TABLE `sg_packages` (
+  `id` int(11) NOT NULL,
+  `package_name` varchar(60) DEFAULT NULL,
+  `package_slug` text,
+  `package_excerpt` mediumtext,
+  `package_desc` longtext,
+  `package_days` int(4) DEFAULT NULL,
+  `package_nights` int(4) DEFAULT NULL,
+  `package_price` decimal(10,2) DEFAULT NULL,
+  `package_image` varchar(256) DEFAULT NULL,
+  `status` int(2) DEFAULT '1' COMMENT '0-Inactive, 1-Active, 10-Deleted',
+  `created_on` datetime DEFAULT NULL,
+  `updated_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sg_packages`
+--
+
+INSERT INTO `sg_packages` (`id`, `package_name`, `package_slug`, `package_excerpt`, `package_desc`, `package_days`, `package_nights`, `package_price`, `package_image`, `status`, `created_on`, `updated_on`) VALUES
+(1, 'Honeymoon Package', 'honeymoon-package', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 4, 3, NULL, NULL, 1, '2017-11-10 06:25:38', '2017-11-09 19:06:30'),
+(2, 'Holiday Package', 'holiday-package', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 2, 1, '2500.00', NULL, 1, '2017-11-10 10:24:44', '2017-11-09 19:07:57');
+
 -- --------------------------------------------------------
 
 --
@@ -112,6 +166,21 @@ CREATE TABLE `sg_request_callback` (
   `status` int(2) DEFAULT '1' COMMENT '0-Inactive, 1-Active, 10-Deleted',
   `created_on` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sg_request_callback`
+--
+
+INSERT INTO `sg_request_callback` (`id`, `name`, `contact_no`, `respond_status`, `status`, `created_on`) VALUES
+(1, NULL, NULL, 0, 1, '2017-11-06 17:35:19'),
+(2, 'Jai', NULL, 0, 1, '2017-11-06 17:37:40'),
+(3, 'Jai', NULL, 0, 1, '2017-11-06 17:44:02'),
+(4, 'Ashk', '9987323644', 0, 1, '2017-11-06 17:44:59'),
+(5, 'Kelvin', '9987323644', 0, 1, '2017-11-06 17:48:00'),
+(6, 'John', '9987323644', 0, 1, '2017-11-06 17:50:18'),
+(7, 'John', '9987323644', 0, 1, '2017-11-06 17:51:31'),
+(8, 'John', '9987323644', 0, 1, '2017-11-06 17:53:04'),
+(9, 'John', '9987323644', 0, 1, '2017-11-06 17:55:16');
 
 -- --------------------------------------------------------
 
@@ -131,6 +200,16 @@ CREATE TABLE `sg_service_bookings` (
   `created_on` datetime DEFAULT NULL,
   `updated_on` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sg_service_bookings`
+--
+
+INSERT INTO `sg_service_bookings` (`id`, `ref_id`, `service_name`, `service_slug`, `customer_id`, `customer_details_id`, `book_status`, `status`, `created_on`, `updated_on`) VALUES
+(1, 'B263346C2FCFF9E0B8', 'Honeymoon Package', 'honeymoon_package', 2, 8, 1, NULL, '2017-11-10 00:17:14', '2017-11-10 00:17:14'),
+(2, 'F250AD1175B482D597', 'Honeymoon Package', 'honeymoon_package', 2, 9, 1, NULL, '2017-11-10 00:19:41', '2017-11-10 00:19:41'),
+(3, 'D9FCF278EE75DA0618', 'Honeymoon Package', 'honeymoon_package', 2, 10, 1, NULL, '2017-11-10 00:22:12', '2017-11-10 00:22:12'),
+(4, 'EC8BE8DDB6022BC0F2', 'Temple Pooja Package', 'temple_pooja_package', 2, 11, 1, NULL, '2017-11-10 00:22:51', '2017-11-10 00:22:51');
 
 -- --------------------------------------------------------
 
@@ -161,6 +240,18 @@ CREATE TABLE `sg_success_bookings` (
   `created_on` datetime DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sg_success_bookings`
+--
+
+INSERT INTO `sg_success_bookings` (`id`, `ref_id`, `customer_id`, `customer_details_id`, `vechile_id`, `success_type`, `no_of_days`, `pickup_place`, `drop_place`, `travel_date`, `station_type`, `est_usage_hrs`, `is_night_journey`, `is_drop_same_location`, `total_km`, `rate_per_km`, `total_rate`, `book_status`, `status`, `created_on`, `updated_on`) VALUES
+(1, '000003W5E11264SGSF', 2, 2, 4, 1, 45, 'chennai', 'chennai', '2017-11-11 00:14:08', 2, '0.99', 0, 1, 0, '0.00', '0.00', 1, 1, '2017-11-06 18:01:17', '2017-11-06 18:01:17'),
+(2, '000003W5E11264SGSF', 2, 3, 4, 1, 34, 'madras', 'madras', '2017-06-11 18:04:50', 2, '0.99', 0, 1, 0, '0.00', '0.00', 1, 1, '2017-11-06 18:06:17', '2017-11-06 18:06:17'),
+(3, '000003W5E11264SGSF', 2, 4, 4, 1, 2, 'delhi', 'delhi', '2017-06-11 18:08:12', 2, '0.99', 0, 1, 0, '0.00', '0.00', 1, 1, '2017-11-06 18:09:51', '2017-11-06 18:09:51'),
+(4, '000003W5E11264SGSF', 2, 5, 4, 1, 67, 'Bangalore, Karnataka, India', 'Bangalore, Karnataka, India', '2017-07-11 23:58:07', 2, '0.99', 0, 1, 0, '0.00', '0.00', 1, 1, '2017-11-08 00:02:03', '2017-11-08 00:02:03'),
+(5, '58A30B8BC3EC11E7BC', 2, 6, 5, 2, 2, 'Madras, Tamil Nadu, India', 'Bangalore, Karnataka, India', '2017-08-11 00:02:25', 1, NULL, 0, 0, 348, '20.00', '6960.00', 1, 1, '2017-11-08 00:19:12', '2017-11-08 00:19:12'),
+(6, '5FEB7589ADF7F861B3', 2, 7, 5, 2, 2, 'Madras, Tamil Nadu, India', 'Bangalore, Karnataka, India', '2017-08-11 00:02:25', 1, '0.00', 0, 0, 348, '20.00', '6960.00', 1, 1, '2017-11-08 00:31:25', '2017-11-08 00:31:25');
 
 -- --------------------------------------------------------
 
@@ -220,6 +311,12 @@ ALTER TABLE `sg_customer_details`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sg_packages`
+--
+ALTER TABLE `sg_packages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sg_request_callback`
 --
 ALTER TABLE `sg_request_callback`
@@ -261,27 +358,32 @@ ALTER TABLE `sg_contact_us`
 -- AUTO_INCREMENT for table `sg_customers_master`
 --
 ALTER TABLE `sg_customers_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sg_customer_details`
 --
 ALTER TABLE `sg_customer_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `sg_packages`
+--
+ALTER TABLE `sg_packages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sg_request_callback`
 --
 ALTER TABLE `sg_request_callback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `sg_service_bookings`
 --
 ALTER TABLE `sg_service_bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sg_success_bookings`
 --
 ALTER TABLE `sg_success_bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `sg_vechiles_master`
 --

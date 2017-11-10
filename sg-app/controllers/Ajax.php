@@ -18,13 +18,13 @@
                     
                     $results = $this->ajax_model->submitAttachments();
                     
-                    if ($results['_id'] > 0) {
+                    if (empty($results['_id']) == false) {
                         // Success
                         
                         $msg = $this->load->view('templates/sms/attachments.html', [], true);
                         $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $msg);
-                        if (SEND_SMS && empty($args['contact_no']) == false) {
-                            send_sms($args['contact_no'], $msg);
+                        if (SEND_SMS && empty($results['contact_no']) == false) {
+                            send_sms($results['contact_no'], $msg);
                         }
                         $return = $this->set_msg($msg);
                     }
@@ -35,7 +35,7 @@
                         
                     $results = $this->ajax_model->submitPackage();
                     
-                    if ($results['_id'] > 0) {
+                    if (empty($results['_id']) == false) {
                         // Success
                         
                         $mail_to = $results['email'];
@@ -61,8 +61,8 @@
                         $msg = preg_replace('/\{ref_id\}/', $results['_id'], $msg);
                         $msg = preg_replace('/\{module\}/', $results['module'], $msg);
                             
-                        if (SEND_SMS && empty($args['contact_no']) == false) {
-                            send_sms($args['contact_no'], $msg);
+                        if (SEND_SMS && empty($results['contact_no']) == false) {
+                            send_sms($results['contact_no'], $msg);
                         }
                         $return = $this->set_msg($msg);
                     }
@@ -73,13 +73,13 @@
                     // Request Call Back
                     $results = $this->ajax_model->submitRequest();
                     
-                    if ($results['_id'] > 0) {
+                    if (empty($results['_id']) == false) {
                         // Success
                         
                         $msg = $this->load->view('templates/sms/req_callback.html', [], true);
                         $msg = preg_replace('/\{name\}/', '<b>'. $results['name'] .'</b>', $msg);
-                        if (SEND_SMS && empty($args['contact_no']) == false) {
-                            send_sms($args['contact_no'], $msg);
+                        if (SEND_SMS && empty($results['contact_no']) == false) {
+                            send_sms($results['contact_no'], $msg);
                         }
                         
                         $return = $this->set_msg($msg);
@@ -91,7 +91,7 @@
                     
                     $results = $this->ajax_model->submitMain();
                     
-                    if ($results['_id'] > 0) {
+                    if (empty($results['_id']) == false) {
                         // Success
                         
                         $mail_to = $results['email'];
@@ -117,8 +117,8 @@
                         $msg = preg_replace('/\{ref_id\}/', $results['_id'], $msg);
                         $msg = preg_replace('/\{module\}/', $results['module'], $msg);
                         
-                        if (SEND_SMS && empty($args['contact_no']) == false) {
-                            send_sms($args['contact_no'], $msg);
+                        if (SEND_SMS && empty($results['contact_no']) == false) {
+                            send_sms($results['contact_no'], $msg);
                         }
                         $return = $this->set_msg($msg);
                     }
@@ -127,7 +127,7 @@
                 case 'contact':
                     $results = $this->ajax_model->submitContact();
                     
-                    if ($results['_id'] > 0) {
+                    if (empty($results['_id']) == false) {
                         // Success
                         
                         $mail_to = $results['cnt_email'];
@@ -149,8 +149,8 @@
                         
                         $msg = $this->load->view('templates/sms/enquiry.html', [], true);
                         $msg = preg_replace('/\{name\}/', '<b>'. $results['cnt_name'] .'</b>', $msg);
-                        if (SEND_SMS && empty($args['cnt_contact_no']) == false) {
-                            send_sms($args['cnt_contact_no'], $msg);
+                        if (SEND_SMS && empty($results['cnt_contact_no']) == false) {
+                            send_sms($results['cnt_contact_no'], $msg);
                         }
                         
                         $return = $this->set_msg($msg);

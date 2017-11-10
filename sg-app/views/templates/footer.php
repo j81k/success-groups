@@ -23,7 +23,7 @@
                     <div class="more_services_div">
                         <div class="more_services_hd">Temple Pooja</div>
                         <div class="more_services_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                        <a href="<?= BASE_URL; ?>services/package/temple-pooja" class="more_services_anchor">Book Now</a>
+                        <a href="<?= BASE_URL; ?>services/package/temple-pooja-package" class="more_services_anchor">Book Now</a>
                     </div>
                 </div>
             </div>
