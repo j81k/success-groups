@@ -148,8 +148,8 @@ class Ajax_Model extends CI_Model
         // Service Booking
         $args = [
             'ref_id'                => $this->common_model->get_rand_str(18),
-            'service_name'          => $this->post['pakageName'],
-            'service_slug'          => get_var_name($this->post['pakageName']),
+            'service_name'          => $this->post['packageName'],
+            'service_slug'          => get_var_name($this->post['packageName']),
             
             'customer_id'           => $customer_id,
             'customer_details_id'   => $customer_details_id,
@@ -226,12 +226,30 @@ class Ajax_Model extends CI_Model
         $this->db->insert(TBL_SUCCESS_BOOKING, $args);
         
         return [
-            '_id'       => $args['ref_id'],
-            'module'    => 'Success ' . get_friendly_name($this->post['type']),
+            'ref_id'            => $args['ref_id'],
+            'success_type'      => $args['success_type'],
+            'total_km'          => $args['total_km'],
+            'rate_per_km'       => $args['rate_per_km'],
+            'total_amount'      => $args['total_rate'],
+            'no_of_days'        => $args['no_of_days'],
+            'pickup_place'      => $args['pickup_place'],
+            'drop_place'        => $args['drop_place'],
+            'est_usage_hrs'     => $args['est_usage_hrs'],
+
+            'module'            => 'Success ' . get_friendly_name($this->post['type']),
+            'vechile_type'      => empty($this->post['vechileName']) == false ? $this->post['vechileName'] : '',
+            'travel_date'       => date("d M, Y h:i A", strtotime($args['travel_date'])),
             
-            'name'      => $this->data['name'],
-            'contact_no'=> $this->data['contact_no'],
-            'email'     => $this->data['email'],
+            'station_type'      => $args['station_type'] == 2 ? 'Out Station' : 'Local',
+            'is_night_journey'  => $args['is_night_journey'] == 1 ? 'Yes' : 'No',
+            'is_drop_same_location' => $args['is_drop_same_location'] == 1 ? 'Yes' : 'No',
+            
+            'name'          => $this->data['name'],
+            'contact_no'    => $this->data['contact_no'],
+            'email'         => $this->data['email'],
+            'address_1'     => $this->data['address_1'],
+            'address_2'     => $this->data['address_2'],
+            'location'      => $this->data['location'],
         ];
         
     }

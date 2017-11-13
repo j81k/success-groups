@@ -1,0 +1,36 @@
+<h1>Hello {name},</h1>
+<p>Thank you for booking the {module}!</p> <br />
+<p>Please note the following reference ID for your booking.</p>
+<div style="background: #EFEFEF; padding: 10px; letter-spacing: 1px;">
+    <table border="0">
+        <tr><th>Ref. ID</th><td>{ref_id}</td></tr>
+        <?php if($type != 'package') :?>
+        
+            <?php if($type == 1) : // Call Drivers ?>
+                <tr><th>Station Type</th><td>{station_type}</td></tr>
+                <tr><th>Est. Usage in Hrs</th><td>{est_usage_hrs}</td></tr>
+                
+                <tr><th>Night Journey</th><td>{is_night_journey}</td></tr>    
+                <tr><th>Drop as Same Location</th><td>{is_drop_same_location}</td></tr>
+            <?php endif; ?>
+            
+                <tr><th>No of days</th><td>{no_of_days}</td></tr>
+                <tr><th>Vechile Type</th><td>{vechile_type}</td></tr>
+                <tr><th>Pickup Place</th><td>{pickup_place}</td></tr>
+                <tr><th>Drop Place</th><td>{drop_place}</td></tr>
+                <tr><th>Travel Date</th><td>{travel_date}</td></tr>
+                
+                <tr><th>Total KM</th><td style="text-align: right">{total_km}</td></tr>
+                <tr><th>Rate/KM</th><td style="text-align: right">Rs. {rate_per_km}</td></tr>
+                <tr><th>Total Amount</th><td style="text-align: right">Rs. {total_amount}</td></tr>
+                
+        <?php endif; ?>
+        
+        <tr><th colspan="2">Contact Details</th></tr>
+        <tr><th>Name</th><td>{name}</td></tr>
+        <tr><th>Mobile No</th><td>{contact_no}</td></tr>
+        <tr><th>Email ID</th><td>{email}</td></tr>
+        <tr><th>Address</th><td>: {address_1} <br />{address_2} <br />{location}</td></tr>
+        
+    </table>
+</div>

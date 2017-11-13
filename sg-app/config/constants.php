@@ -87,17 +87,24 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 /*** START - Custom Constants ***/
 define('TIMEZONE',              'Asia/Calcutta'); # Asia/Calcutta
-define('SITE_NAME',		'Success Groups');
+define('SITE_NAME',		'Success Group');
 
 // Mail
 define('SEND_MAIL',             false);
 define('MAIL_SUBJECT',          'Mail from: ' . SITE_NAME); # Default Mail Subject
-define('MAIL_ENQ_ADDR',         'support@sg.com'); # From address for enquiry etc
+define('MAIL_ENQ_ADDR',         'support@successgrouptravel.com'); # From address for enquiry etc
+define('MAIL_ADMIN_DRIVERS',    'nazeer2mail@gmail.com');  # Admin mail address, for "Call Drivers"
+define('MAIL_ADMIN_TRAVELS',    MAIL_ADMIN_DRIVERS);       # Admin mail address, for "Travels"
+define('MAIL_ADMIN_TOURS',      MAIL_ADMIN_DRIVERS);       # Admin mail address, for "Tours"
 
 // SMS
 define('SEND_SMS',              false);
-define('SMS_GATEWAY_URL',       'http://sms.glg.co.in/sendsms?uname=selfie&pwd=selfie&senderid=SELFIE&route=T');
 define('MOBILE_NO_PREFIX',      '+91');
+define('SMS_GATEWAY_URL',       'http://sms.glg.co.in/sendsms?uname=selfie&pwd=selfie&senderid=SELFIE&route=T');
+define('MOBILE_ADMIN_DRIVERS',  '9842566392');          # Admin mobile no, for "Call Drivers"
+define('MOBILE_ADMIN_TRAVELS',  MOBILE_ADMIN_DRIVERS);  # Admin mobile no, for "Travels"
+define('MOBILE_ADMIN_TOURS',    MOBILE_ADMIN_DRIVERS);  # Admin mobile no, for "Tours"
+
 
 // API
 define('GOOGLE_MAP_API_KEY',    'AIzaSyAUKXpv0EroPCs6SoQEXrX_jZpAjg6IYP0');

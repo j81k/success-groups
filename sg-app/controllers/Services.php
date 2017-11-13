@@ -34,10 +34,11 @@ class Services extends BaseController
         $this->render('services/tour_packages', $data);
     }
     
-    public function package($package_name = 'honey-moon')
+    public function package($package_slug = 'temple-pooja-package')
     {
         $data = [
-            'title' => get_friendly_name($package_name)
+            'package'   => $this->service_model->get_package($package_slug),
+            //'title'     => get_friendly_name($package_slug)
         ];
         $this->render('services/package', $data);
     }

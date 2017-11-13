@@ -5,10 +5,15 @@
 
 [Mail Templates]
 * /views/templates/mail
+        
         - <enquiry.html>
             Params: 
-                * {name}    # Name of the customer
-                * {desc}    # Actual comment sent by customer   
+                * {name}        # Name of the customer
+                * {desc}        # Actual comment sent by customer   
+
+            [Admin]
+                * {email}       # Email Address of the customer
+                * {contact_no}  # Contact No of the customer
 
         - <success_booking.html>
             Same for: Package Booking 
@@ -16,6 +21,32 @@
                 * {name}    # Name of the customer
                 * {module}  # Submitted Module Name
                 * {ref_id}  # Unique reference ID for future use.
+                
+                * {contact_no}
+                * {email}
+                * {address_1}
+                * {address_2}
+                * {location}
+                
+                [For "Call Drivers" & "Travels"]
+                --------------------------------
+                * {no_of_days}
+                * {vechile_type}
+                * {pickup_place}
+                * {drop_place}
+                * {travel_date}
+
+                * {total_km}
+                * {rate_per_km}
+                * {total_amount}
+
+                [For "Call Drivers"]
+                --------------------------------
+                * {station_type}
+                * {est_usage_hrs}
+                * {is_night_journey}
+                * {is_drop_same_location}
+         
 
 * /views/templates/sms
         - <enquiry.html>

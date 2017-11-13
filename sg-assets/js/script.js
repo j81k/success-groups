@@ -90,13 +90,13 @@ $(document).on('ready', function(){
     $('#attachment-form').on('submit', function(event){
         event.preventDefault();
         
-        var name = $(this).find('.name');
-        if (name != '') {
+        var $name = $(this).find('.name');
+        if ($name.val() != '') {
             
             var $this = $(this)
             ,   $sbmtBtn = $this.find('input[type="submit"]')
             ,   data = {
-                pakageName: $('#pkg-title').text(),
+                packageName: $('#pkg-title').text(),
                 'data': $this.serialize()
             }
 
@@ -114,6 +114,7 @@ $(document).on('ready', function(){
         
         } else {
             alert('Error: Please enter all the required fields!');
+            $name.focus();
         }
        
         return false;
@@ -122,13 +123,13 @@ $(document).on('ready', function(){
     $('#package-form').on('submit', function(event){
         event.preventDefault();
         
-        var name = $(this).find('.name');
-        if (name != '') {
+        var $name = $(this).find('.name');
+        if ($name.val() != '') {
             
             var $this = $(this)
             ,   $sbmtBtn = $this.find('input[type="submit"]')
             ,   data = {
-                pakageName: $('#pkg-title').text(),
+                packageName: $('#pkg-title').text(),
                 'data': $this.serialize()
             }
 
@@ -146,6 +147,7 @@ $(document).on('ready', function(){
         
         } else {
             alert('Error: Please enter all the required fields!');
+            $name.focus();
         }
        
         return false;
@@ -173,6 +175,9 @@ $(document).on('ready', function(){
                     $('#popup2 .contact-no').val('');
                 };
             });
+        } else {
+            alert('Error: Please enter all the required fields!');
+            $('#popup2 .name').focus();
         }
     });
 
@@ -194,7 +199,7 @@ $(document).on('ready', function(){
         
         var type = $(this).attr('data-type') || "";
         if(type == '') {
-            alert("Oops: Unable to determine the type of form!\nReloading the page may solve the problem.");
+            alert("Oops: Unable to determine the type of the form!\nReloading the page may solve the problem.");
             return false;
         }
         
@@ -209,6 +214,7 @@ $(document).on('ready', function(){
             var $parent = $('#main-'+type).parent().closest('.tabs-form')
             ,   data    = {
                 type : type,
+                vechileName: $('#main-'+type+' .vehicle-type option:selected').text(),
                 distanceInfo: {
                     totalKm: $('#main-'+type+' .total-km').text(),
                     ratePerKm: $('#main-'+type+' .rate-per-km').text(),
@@ -246,19 +252,27 @@ $(document).on('ready', function(){
       
     $('form.ft_enq_form, form.contact_form').on('submit', function(event){
         event.preventDefault();
-        var $this = $(this)   
-        ,   data = {
-            'data': $this.serialize()
-        }
         
-        $.post(baseUrl + 'ajax/submit/contact', data, function(results){
-            results= JSON.parse(results);
-            alert(results.message);
-            
-            if (results.status != -1) {
-                $this[0].reset();
+        var $name = $(this).find('.name'); 
+        if ($name.val() != "") {
+            var $this = $(this)   
+            ,   data = {
+                'data': $this.serialize()
             }
-        });
+
+            $.post(baseUrl + 'ajax/submit/contact', data, function(results){
+                results= JSON.parse(results);
+                alert(results.message);
+
+                if (results.status != -1) {
+                    $this[0].reset();
+                }
+            });
+        
+        } else {
+            alert('Error: Please enter all the required fields!');
+            $name.focus();
+        }
         
         return false;
     });
